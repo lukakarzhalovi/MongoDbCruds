@@ -47,7 +47,7 @@ public class UiService() : IUiService
     {
         Console.Write(prompt);
         var input = Console.ReadLine();
-        
+
         if (string.IsNullOrWhiteSpace(input))
         {
             await DisplayMessageAsync("Input cannot be empty. Please try again.", true);
@@ -67,7 +67,7 @@ public class UiService() : IUiService
 
         Console.WriteLine($"\n=== Found {books.Count} book(s) ===");
         Console.WriteLine(new string('-', 80));
-        
+
         for (var i = 0; i < books.Count; i++)
         {
             Console.WriteLine($"Book {i + 1}:");
@@ -92,7 +92,7 @@ public class UiService() : IUiService
     {
         var color = isError ? ConsoleColor.Red : ConsoleColor.Yellow;
         var prefix = isError ? "ERROR: " : "INFO: ";
-        
+
         Console.ForegroundColor = color;
         Console.WriteLine($"\n{prefix}{message}");
         Console.ResetColor();

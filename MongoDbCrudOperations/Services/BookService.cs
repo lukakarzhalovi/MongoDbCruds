@@ -90,7 +90,7 @@ public class BookService(
         }
 
         // Check if new title conflicts with existing book
-        if (updateBookDto.Title != existingBook.Title && 
+        if (updateBookDto.Title != existingBook.Title &&
             await bookRepository.BookExistsAsync(updateBookDto.Title))
         {
             throw new InvalidOperationException($"A book with title '{updateBookDto.Title}' already exists.");
@@ -120,7 +120,7 @@ public class BookService(
         }
 
         // Check if new title conflicts with existing book
-        if (updateBookDto.Title != title && 
+        if (updateBookDto.Title != title &&
             await bookRepository.BookExistsAsync(updateBookDto.Title))
         {
             throw new InvalidOperationException($"A book with title '{updateBookDto.Title}' already exists.");

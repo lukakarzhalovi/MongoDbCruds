@@ -69,7 +69,7 @@ public class ApplicationService(
                         break;
                     case OperationEnum.Exit:
                         logger.LogInformation("Exiting application");
-                    return;
+                        return;
                     default:
                         await uiService.DisplayMessageAsync("Invalid choice. Please try again.", true);
                         break;
@@ -95,10 +95,10 @@ public class ApplicationService(
         {
             await uiService.DisplayCreateBookInstructionsAsync();
             var input = await uiService.GetUserInputAsync("Enter book details: ");
-            
+
             var createBookDto = await mapper.MapToCreateBookDtoAsync(input.Split(", "));
             var book = await bookService.CreateBookAsync(createBookDto);
-            
+
             await uiService.DisplaySuccessMessageAsync($"Book created successfully with ID: {book.Id}");
         }
         catch (Exception ex)
@@ -126,7 +126,7 @@ public class ApplicationService(
         {
             await uiService.DisplayGetBookInstructionsAsync();
             var title = await uiService.GetUserInputAsync("Enter book title: ");
-            
+
             var book = await bookService.GetBookByTitleAsync(title);
             await uiService.DisplayBookAsync(book);
         }
@@ -142,7 +142,7 @@ public class ApplicationService(
         {
             await uiService.DisplayGetBookByIdInstructionsAsync();
             var idInput = await uiService.GetUserInputAsync("Enter book ID: ");
-            
+
             var id = await mapper.MapToGuidAsync(idInput);
             var book = await bookService.GetBookByIdAsync(id);
             await uiService.DisplayBookAsync(book);
@@ -159,10 +159,10 @@ public class ApplicationService(
         {
             await uiService.DisplayUpdateBookInstructionsAsync();
             var input = await uiService.GetUserInputAsync("Enter book details: ");
-            
+
             var updateBookDto = await mapper.MapToUpdateBookDtoAsync(input.Split(", "));
             var success = await bookService.UpdateBookByTitleAsync(updateBookDto.Title, updateBookDto);
-            
+
             if (success)
             {
                 await uiService.DisplaySuccessMessageAsync("Book updated successfully");
@@ -185,13 +185,13 @@ public class ApplicationService(
             await uiService.DisplayGetBookByIdInstructionsAsync();
             var idInput = await uiService.GetUserInputAsync("Enter book ID: ");
             var id = await mapper.MapToGuidAsync(idInput);
-            
+
             await uiService.DisplayUpdateBookInstructionsAsync();
             var input = await uiService.GetUserInputAsync("Enter book details: ");
-            
+
             var updateBookDto = await mapper.MapToUpdateBookDtoAsync(input.Split(", "));
             var success = await bookService.UpdateBookAsync(id, updateBookDto);
-            
+
             if (success)
             {
                 await uiService.DisplaySuccessMessageAsync("Book updated successfully");
@@ -213,9 +213,9 @@ public class ApplicationService(
         {
             await uiService.DisplayDeleteBookInstructionsAsync();
             var title = await uiService.GetUserInputAsync("Enter book title: ");
-            
+
             var success = await bookService.DeleteBookByTitleAsync(title);
-            
+
             if (success)
             {
                 await uiService.DisplaySuccessMessageAsync("Book deleted successfully");
@@ -238,9 +238,9 @@ public class ApplicationService(
             await uiService.DisplayDeleteBookByIdInstructionsAsync();
             var idInput = await uiService.GetUserInputAsync("Enter book ID: ");
             var id = await mapper.MapToGuidAsync(idInput);
-            
+
             var success = await bookService.DeleteBookAsync(id);
-            
+
             if (success)
             {
                 await uiService.DisplaySuccessMessageAsync("Book deleted successfully");
@@ -262,9 +262,9 @@ public class ApplicationService(
         {
             await uiService.DisplayCheckBookExistsInstructionsAsync();
             var title = await uiService.GetUserInputAsync("Enter book title: ");
-            
+
             var exists = await bookService.BookExistsAsync(title);
-            
+
             if (exists)
             {
                 await uiService.DisplaySuccessMessageAsync($"Book '{title}' exists in the database");
