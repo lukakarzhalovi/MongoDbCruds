@@ -1,5 +1,4 @@
 using MongoDbCrudOperations.Dto;
-using MongoDbCrudOperations.Entities;
 using MongoDbCrudOperations.Services;
 using Microsoft.Extensions.Logging;
 
@@ -12,8 +11,7 @@ public interface IMapper
     Task<Guid> MapToGuidAsync(string input);
 }
 
-public class Mapper(IValidationService validationService, ILogger<Mapper> logger)
-    : IMapper
+public class Mapper(IValidationService validationService, ILogger<Mapper> logger) : IMapper
 {
     public async Task<CreateBookDto> MapToCreateBookDtoAsync(string[] input)
     {

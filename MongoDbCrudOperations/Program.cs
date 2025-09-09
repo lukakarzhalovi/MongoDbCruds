@@ -4,12 +4,10 @@ using MongoDbCrudOperations.Mapper;
 using MongoDbCrudOperations.Repository;
 using MongoDbCrudOperations.Services;
 using MongoDbCrudOperations.Ui;
-using MongoDbCrudOperations.Validators;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using FluentValidation;
 
 var host = CreateHostBuilder(args).Build();
 
@@ -51,7 +49,6 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
 
             // Validation
             services.AddScoped<IValidationService, ValidationService>();
-            services.AddValidatorsFromAssembly(typeof(BookValidator).Assembly);
 
             // Repository
             services.AddScoped<IBookRepository, BookRepository>();
